@@ -1,46 +1,46 @@
 const express=require('express');
 const bodyParser=require('body-parser');
-const dishRouter=express.Router();
-dishRouter.use(bodyParser.json());
+const promoRouter=express.Router();
+promoRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+promoRouter.route('/')
 .all((req,res,next)=>{
     res.statusCode=200;
     res.setHeader('Content-type','text/plain');
     next();
   })  
   .get((req,res,next)=>{
-    res.end('will send you back the details');
+    res.end('will send you back the  promo details');
   })
   .post((req,res,next)=>{
-    res.end('will add the details for'+req.body.name+' & '+req.body.description);
+    res.end('will add the promo details for'+req.body.name+' & '+req.body.description);
   })
   .put((req,res,next)=>{
     res.statusCode=403;
     res.end('not supported');
   })
   .delete((req,res,next)=>{
-    res.end('all dishes deleted');
+    res.end('all promotions deleted');
   });
 
-dishRouter.route('/:dishid')
+  promoRouter.route('/:promoid')
 .all((req,res,next)=>{
     res.statusCode=200;
     res.setHeader('Content-type','text/plain');
     next();
   })
   .get((req,res,next)=>{
-    res.end('will send you back the details for dish '+req.params.dishid);
+    res.end('will send you back the details for promoid '+req.params.promoid);
   })
   .post((req,res,next)=>{
     res.statusCode=403;
     res.end('not supported');
   })
   .put((req,res,next)=>{  
-    res.end('will add the details for'+req.params.dishid+' with '+req.body.name+' & '+req.body.description);
+    res.end('will add the details for'+req.params.promoid+' with '+req.body.name+' & '+req.body.description);
   })
   .delete((req,res,next)=>{
-    res.end(req.params.dishid+' dish deleted');
+    res.end(req.params.promoid+' dish deleted');
   });
 
-  module.exports=dishRouter;
+  module.exports=promoRouter;

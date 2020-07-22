@@ -1,16 +1,16 @@
 const express=require('express');
 const bodyParser=require('body-parser');
-const dishRouter=express.Router();
-dishRouter.use(bodyParser.json());
+const leaderRouter=express.Router();
+leaderRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+leaderRouter.route('/')
 .all((req,res,next)=>{
     res.statusCode=200;
     res.setHeader('Content-type','text/plain');
     next();
   })  
   .get((req,res,next)=>{
-    res.end('will send you back the details');
+    res.end('will send you back the leader details');
   })
   .post((req,res,next)=>{
     res.end('will add the details for'+req.body.name+' & '+req.body.description);
@@ -20,27 +20,27 @@ dishRouter.route('/')
     res.end('not supported');
   })
   .delete((req,res,next)=>{
-    res.end('all dishes deleted');
+    res.end('all leaders deleted');
   });
 
-dishRouter.route('/:dishid')
+  leaderRouter.route('/:leaderid')
 .all((req,res,next)=>{
     res.statusCode=200;
     res.setHeader('Content-type','text/plain');
     next();
   })
   .get((req,res,next)=>{
-    res.end('will send you back the details for dish '+req.params.dishid);
+    res.end('will send you back the details for dish '+req.params.leaderid);
   })
   .post((req,res,next)=>{
     res.statusCode=403;
     res.end('not supported');
   })
   .put((req,res,next)=>{  
-    res.end('will add the details for'+req.params.dishid+' with '+req.body.name+' & '+req.body.description);
+    res.end('will add the details for'+req.params.leaderid+' with '+req.body.name+' & '+req.body.description);
   })
   .delete((req,res,next)=>{
-    res.end(req.params.dishid+' dish deleted');
+    res.end(req.params.leaderid+' dish deleted');
   });
 
-  module.exports=dishRouter;
+  module.exports=leaderRouter;
